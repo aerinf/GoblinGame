@@ -1,0 +1,19 @@
+.stone {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: gray;
+    display: inline-block;
+}
+.stone3 span, .stone1 #first {
+    display:inline-block;
+}
+.stone0 span, .stone1 #second, .stone1 #third, .stone2 #third, .invisible {
+    display: none;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+

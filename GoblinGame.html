@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Goblin Game</title>
+    <script>
+        function initialize() {
+            pile1 = document.getElementById("pile1");
+            pile2 = document.getElementById("pile2");
+            pile3 = document.getElementById("pile3");
+            button1 = document.getElementById("button1");
+            button2 = document.getElementById("button2");
+            button3 = document.getElementById("button3");
+        }
+        function take1() {
+            if (pile1.className=="stone3" || pile1.className=="stone2" || pile1.className=="stone1") {
+                pile1.className = "stone" + parseInt(pile1.className.substr(5, 1)-1);
+            }
+            if (pile1.className=="stone0") {
+                button1.className = "invisible";
+            }
+        }
+        function take2() {
+            if (pile2.className=="stone3" || pile2.className=="stone2" || pile2.className=="stone1") {
+                pile2.className = "stone" + parseInt(pile2.className.substr(5, 1)-1);
+            }
+            if (pile2.className=="stone0") {
+                button2.className = "invisible";
+            }
+        }
+        function take3() {
+            if (pile3.className=="stone3" || pile3.className=="stone2" || pile3.className=="stone1") {
+                pile3.className = "stone" + parseInt(pile3.className.substr(5, 1)-1);
+            }
+            if (pile3.className=="stone0") {
+                button3.className = "invisible";
+            }
+        }
+        function empty() {
+            if (pile1.className=="stone0" && pile2.className=="stone0" && pile3.className=="stone0") {
+                gameOver(); /*TK*/
+            }
+        }
+        function reset() {
+
+        }
+    </script>
+</head>
+<body onload="initialize()">
+    <div class="container">
+        <div>
+            <div class="stone3" id="pile1">
+                <span class="stone" id="first"></span>
+                <span class="stone" id="second"></span>
+                <span class="stone" id="third"></span>
+            </div>
+            <button onclick="take1()" id="button1">Take</button>
+        </div>
+        <div>
+            <div class="stone3" id="pile2">
+                <span class="stone" id="first"></span>
+                <span class="stone" id="second"></span>
+                <span class="stone" id="third"></span>
+            </div>
+            <button onclick="take2()" id="button2">Take</button>
+        </div>
+        <div>
+            <div class="stone3" id="pile3">
+                <span class="stone" id="first"></span>
+                <span class="stone" id="second"></span>
+                <span class="stone" id="third"></span>
+            </div>
+            <button onclick="take3()" id="button3">Take</button>
+        </div>
+    </div>
+    <button onclick="reset()">Reset</button>
+</body>
+</html>
