@@ -1,3 +1,4 @@
+<!--Aerin Franklin, Web Development, Odd days, periods 7-8, 11/24, Goblin Game-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +39,12 @@
             if (pile1.className=="stone2") {
                 button3.className = "invisible";
             }
+            if (empty()) {
+                goblinMessage.innerHTML="haHa, You losT! i woN! loseR!"
+            }
+            else {
+                goblinMove();
+            }
         }
         function take2(n) {
             if (pile2.className=="stone3" || pile2.className=="stone2" || pile2.className=="stone1") {
@@ -54,6 +61,12 @@
             }
             if (pile2.className=="stone2") {
                 button6.className = "invisible";
+            }
+            if (empty()) {
+                goblinMessage.innerHTML="haHa, You losT! i woN! loseR!"
+            }
+            else {
+                goblinMove();
             }
         }
         function take3(n) {
@@ -72,11 +85,53 @@
             if (pile3.className=="stone2") {
                 button9.className = "invisible";
             }
+            if (empty()) {
+                goblinMessage.innerHTML="haHa, You losT! i woN! loseR!"
+            }
+            else {
+                goblinMove();
+            }
+        }
+        function removeButtons() {
+            if (pile1.className=="stone0") {
+                button1.className = "invisible";
+                button2.className = "invisible";
+                button3.className = "invisible";
+            }
+            if (pile1.className=="stone1") {
+                button2.className = "invisible";
+                button3.className = "invisible";
+            }
+            if (pile1.className=="stone2") {
+                button3.className = "invisible";
+            }
+            if (pile2.className=="stone0") {
+                button4.className = "invisible";
+                button5.className = "invisible";
+                button6.className = "invisible";
+            }
+            if (pile2.className=="stone1") {
+                button5.className = "invisible";
+                button6.className = "invisible";
+            }
+            if (pile2.className=="stone2") {
+                button6.className = "invisible";
+            }
+            if (pile3.className=="stone0") {
+                button7.className = "invisible";
+                button8.className = "invisible";
+                button9.className = "invisible";
+            }
+            if (pile3.className=="stone1") {
+                button8.className = "invisible";
+                button9.className = "invisible";
+            }
+            if (pile3.className=="stone2") {
+                button9.className = "invisible";
+            }
         }
         function empty() {
-            if (pile1.className=="stone0" && pile2.className=="stone0" && pile3.className=="stone0") {
-                gameOver(); /*TK*/
-            }
+            return pile1.className=="stone0" && pile2.className=="stone0" && pile3.className=="stone0"; 
         }
         function reset() {
             pile1.className = "stone3";
@@ -91,9 +146,61 @@
             button7.className = "";
             button8.className = "";
             button9.className = "";
+            goblinMessage.innerHTML="youR moVe."
         }
         function tutorial() {
             goblinMessage.innerHTML="This is the gobliN gaMe. Click a button to remove that number of stones from the above pile. If you take the last stone from the last pile, you lose.";
+        }
+        function goblinMove() {
+            goblinMessage.innerHTML="i can'T belieVe You diD somethinG thaT stupiD! whaT a dumB moVe. "
+            if (pile1.className=="stone1"){
+                pile1.className="stone0";
+                goblinMessage.innerHTML+="i tooK tHe lasT stoNe froM tHe firsT piLe. "
+            }
+            else if (pile2.className=="stone1") {
+                pile2.className="stone0";
+                goblinMessage.innerHTML+="i tooK tHe lasT stoNe froM tHe seconD piLe. "
+            }
+            else if (pile3.className=="stone1") {
+                pile3.className="stone0";
+                goblinMessage.innerHTML+="i tooK tHe lasT stoNe froM tHe thirD piLe. "
+            }
+            else if (parseInt((Math.random() * 10) + 1) == 1) {
+                console.log("point reached");
+                if (pile1.className!="stone0" && pile1.className.substr(5,1) < pile2.className.substr(5,1) && pile1.className.substr(5,1) < pile3.className.substr(5,1)) {
+                    pile1.className = "stone" + parseInt(pile1.className.substr(5, 1)-1);
+                    goblinMessage.innerHTML+="i tooK a stoNe froM the firsT piLe. "
+                }
+                else if (pile2.className!="stone0" && pile2.className.substr(5,1) <= pile1.className.substr(5,1) && pile2.className.substr(5,1) <= pile3.className.substr(5,1)) {
+                    pile2.className = "stone" + parseInt(pile2.className.substr(5, 1)-1);
+                    goblinMessage.innerHTML+="i tooK a stoNe froM the seconD piLe. "
+                }
+                else if (pile3.className!="stone0") {
+                    pile3.className = "stone" + parseInt(pile3.className.substr(5, 1)-1);
+                    goblinMessage.innerHTML+="i tooK a stoNe froM the thirD piLe. "
+                }
+            }
+            else {
+                if (pile1.className.substr(5,1) > pile2.className.substr(5,1) && pile1.className.substr(5,1) > pile3.className.substr(5,1)) {
+                    pile1.className = "stone" + parseInt(pile1.className.substr(5, 1)-1);
+                    goblinMessage.innerHTML+="i tooK a stoNe froM the firsT piLe. "
+                }
+                else if (pile2.className.substr(5,1) >= pile1.className.substr(5,1) && pile2.className.substr(5,1) >= pile3.className.substr(5,1)) {
+                    pile2.className = "stone" + parseInt(pile2.className.substr(5, 1)-1);
+                    goblinMessage.innerHTML+="i tooK a stoNe froM the seconD piLe. "
+                }
+                else if (pile3.className!="stone0") {
+                    pile3.className = "stone" + parseInt(pile3.className.substr(5, 1)-1);
+                    goblinMessage.innerHTML+="i tooK a stoNe froM the thirD piLe. "
+                }
+            }
+            removeButtons();
+            if (empty()) {
+                goblinMessage.innerHTML="oH No, i losT. plaY agaiN?"
+            }
+            else {
+                goblinMessage.innerHTML+="clearlY, mY moVe is superioR. i'M a geniuS."
+            }
         }
     </script>
 </head>
